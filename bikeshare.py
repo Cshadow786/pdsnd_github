@@ -15,7 +15,7 @@ def get_filters():
         (str) month - name of the month to filter by, or "all" to apply no month filter
         (str) day - name of the day of week to filter by, or "all" to apply no day filter
     """
-    # TO DO: get user input for city (chicago, new york city, washington). HINT: Use a while loop to handle invalid inputs
+    # gets user input for city (chicago, new york city, or washington)
     correct = True
     cities = ('chicago', 'new york city', 'washington')
     while correct == True:
@@ -26,7 +26,7 @@ def get_filters():
         else:
             break
         
-    # TO DO: get user input for month (all, january, february, ... , june)
+    # gets user input for month
     
     months = ('january','february','march','april','may','june', 'all')
     while correct == True:
@@ -37,7 +37,7 @@ def get_filters():
         else:
             break
         
-    # TO DO: get user input for day of week (all, monday, tuesday, ... sunday)
+    # gets user input for day of week
     
     days = ('monday','tuesday','wednesday','thursday','friday','saturday','sunday','all')
     while correct == True:
@@ -90,15 +90,15 @@ def time_stats(df):
     print('\nCalculating The Most Frequent Times of Travel...\n')
     start_time = time.time()
 
-    # TO DO: display the most common month
+    # gets the most common month
     common_month = df['Month'].mode()[0]
     print('the most common month is:', common_month)
 
-    # TO DO: display the most common day of week
+    # gets the most common day of week
     common_day = df['DayOweek'].mode()[0]
     print('the most common day of the weeek is:', common_day)
 
-    # TO DO: display the most common start hour
+    # gets the most common start hour
     df['hour'] = df['Start Time'].dt.hour
     common_hour = df['hour'].mode()[0]
     print('the most common hour is', common_hour)
@@ -113,15 +113,15 @@ def station_stats(df):
     print('\nCalculating The Most Popular Stations and Trip...\n')
     start_time = time.time()
 
-    # display most commonly used start station
+    # gets most commonly used start station
     commonStartStation = df['Start Station'].mode()[0]
     print('Most commonly used start station:', commonStartStation)
 
-    # display most commonly used end station
+    # gets most commonly used end station
     commonEndStation = df['End Station'].mode()[0]
     print('Most commonly used end station:', commonEndStation)
 
-    # display most frequent combination of start station and end station trip
+    # gets most frequent combination of start and end station (trip)
     df['Frequent Trip'] = df['Start Station'] + ' to ' + df['End Station']
     commonTrip = df['Frequent Trip'].mode()[0]
     print('Most common trip:', commonTrip)
@@ -136,10 +136,10 @@ def trip_duration_stats(df):
     print('\nCalculating Trip Duration...\n')
     start_time = time.time()
 
-    # TO DO: display total travel time
+    # gets total travel time
     print('the total travel time is:', df['Trip Duration'].sum())
     
-    # TO DO: display mean travel time
+    # gets mean travel time
     meantravel =  df['Trip Duration'].mean()
     print('the mean travel time is:', meantravel)
 
@@ -153,19 +153,19 @@ def user_stats(df):
     print('\nCalculating User Stats...\n')
     start_time = time.time()
 
-    # TO DO: Display counts of user types
+    # gets counts of user types
     accounttypes = df['User Type'].value_counts()
     print('the number of users who have each different type of account are:', accounttypes)
     
     try:
-        # TO DO: Display counts of gender
+        # gets counts of gender
         gendernumber = df['Gender'].value_counts()
         print('The number of people of each gender:', gendernumber)
     except KeyError:
         print('no gender data could be found')
     
     try:
-        # TO DO: Display earliest, most recent, and most common year of birth
+        # gets earliest, most recent, and most common year of birth
         print('the most recent birth day year was:', df['Birth Year'].min())
     except KeyError:
         print('no Birth year data could be found')
